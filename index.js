@@ -4,8 +4,11 @@ import db from './config/db.js'
 
 const app = express()
 
+app.use(express.urlencoded({extended: true}))
+
 try {
     await db.authenticate()
+    db.sync()
     console.log('Base de datos conectada')
 } catch (error) {
     console.log(error)
